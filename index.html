@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The 14 Day Reset</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans&display=swap');
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #fafafa;
+    color: #333;
+  }
+  h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 0.2em;
+    color: #4a90e2;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .intro, .about-me, .calendar-intro, .contact-section {
+    max-width: 700px;
+    margin: 1em auto 2em auto;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    color: #444;
+  }
+  .about-me ul {
+    margin-top: 0.5em;
+    list-style: disc inside;
+  }
+  .about-me ul li {
+    margin: 0.3em 0;
+  }
+
+  .calendar-intro {
+    font-style: italic;
+    font-weight: 600;
+    color: #555;
+  }
+
+  .day-section {
+    max-width: 700px;
+    margin: 2em auto;
+    border-radius: 12px;
+    padding: 1.5em 2em;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 0.07);
+  }
+  .day-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 0.4em;
+  }
+  .day-text {
+    font-size: 1rem;
+    margin-bottom: 1em;
+  }
+  .day-image {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+  }
+
+  /* Pastel background colors for days */
+  .bg-pastel-1 { background: #f9e6e6; }
+  .bg-pastel-2 { background: #e8f0fe; }
+  .bg-pastel-3 { background: #e7f9e7; }
+  .bg-pastel-4 { background: #fff7e6; }
+  .bg-pastel-5 { background: #f0f0f8; }
+  .bg-pastel-6 { background: #e6f2f0; }
+  .bg-pastel-7 { background: #fff0f3; }
+  .bg-pastel-8 { background: #f4f9f9; }
+  .bg-pastel-9 { background: #fff8e7; }
+  .bg-pastel-10 { background: #f7f0f8; }
+  .bg-pastel-11 { background: #eaf6ff; }
+  .bg-pastel-12 { background: #f6fff9; }
+  .bg-pastel-13 { background: #fff3e6; }
+  .bg-pastel-14 { background: #f0f8ff; }
+
+  /* Quiz/Poll/Fact container */
+  .interactive-container {
+    max-width: 700px;
+    margin: 2em auto;
+    padding: 1.5em 2em;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgb(0 0 0 / 0.12);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #fff;
+  }
+  .quiz-container, .poll-container, .fact-container {
+    cursor: default;
+  }
+
+  /* Vibrant background colors for interactive blocks */
+  .vibrant-1 { background: #ff6f61; }
+  .vibrant-2 { background: #f5a623; }
+  .vibrant-3 { background: #50e3c2; }
+  .vibrant-4 { background: #9013fe; }
+  .vibrant-5 { background: #f8e71c; }
+
+  /* Quiz styles */
+  .quiz-question {
+    margin-bottom: 1em;
+    font-size: 1.2rem;
+  }
+  .quiz-options button {
+    display: block;
+    background: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6em 1em;
+    margin: 0.4em 0;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: #333;
+    text-align: left;
+    width: 100%;
+  }
+  .quiz-options button:hover {
+    background-color: #ddd;
+  }
+  .quiz-options button.correct {
+    background-color: #4caf50 !important;
+    color: white;
+  }
+  .quiz-options button.wrong {
+    background-color: #e53935 !important;
+    color: white;
+  }
+  .quiz-feedback {
+    margin-top: 0.7em;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  /* Poll styles */
+  .poll-question {
+    margin-bottom: 1em;
+    font-size: 1.2rem;
+  }
+  .poll-options label {
+    display: block;
+    margin: 0.5em 0;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .poll-submit {
+    margin-top: 1em;
+    background: #fff;
+    border: none;
+    padding: 0.7em 1.2em;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #333;
+  }
+  .poll-result {
+    margin-top: 1em;
+    font-weight: 700;
+  }
+
+  /* Fact styles */
+  .fact-text {
+    font-size: 1.2rem;
+  }
+
+  /* Contact Section */
+  .contact-section a {
+    color: #4a90e2;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .contact-section a:hover {
+    text-decoration: underline;
+  }
+
+  /* Responsive */
+  @media(max-width: 768px){
+    h1 { font-size: 2.8rem; }
+    .day-section, .interactive-container, .intro, .about-me, .calendar-intro, .contact-section {
+      margin: 1em 1em;
+      padding: 1em 1.2em;
+    }
+  }
+</style>
+</head>
+<body>
+
+<h1>The 14 Day Reset</h1>
+
+<section class="intro">
+  <p>Welcome to The 14 Day Reset — your gentle guide to refresh your mind, body, and soul. Over the next two weeks, you'll embark on mindful practices, nourishing meals, and simple movements designed to restore balance and bring peace into your daily routine. Let’s begin this transformative journey together.</p>
+</section>
+
+<section class="about-me">
+  <h2>About Me</h2>
+  <p>Hi, I'm Sayantani a passionate digital marketer passionate about wellness and productivity. I created the 14 day reset to help others recharge, refocus and feel their best.With a blend of strategy, mindset, and balance, I guide people toward achieving both personal and professional clarity.</p>
+  <ul>
+    <li>Acquired skills in social media marketing, content creation, and brand storytelling.</li>
+    <li>Committed to inspiring positive change and wellness.</li>
+    <li>Always eager to learn and grow professionally.</li>
+  </ul>
+</section>
+
+<section class="calendar-intro">
+  <p>Here’s your carefully crafted 14-day wellness calendar to reset your mind, body, and spirit.</p>
+</section>
+
+<!-- Day 1 -->
+<section class="day-section bg-pastel-1">
+  <h3 class="day-title"><strong>Day 1 - Calm Within 🧘‍♂️</strong></h3>
+  <p class="day-text">Begin the reset by grounding yourself through deep, mindful breathing. A few minutes of focused breathwork helps clear your mind and connect you with your inner calm and balance.</p>
+  <img class="day-image" src="https://plus.unsplash.com/premium_photo-1661776042506-9154882ba689?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cGVyc29uJTIwbWVkaXRhdGluZyUyMHBlYWNlZnVsbHl8ZW58MHx8MHx8fDA%3D" alt="Calm breathing meditation" />
+</section>
+
+<!-- Day 2 -->
+<section class="day-section bg-pastel-2">
+  <h3 class="day-title"><strong>Day 2 - Nourish Naturally 🥣</strong></h3>
+  <p class="day-text">Start your day with a colorful, nutrient-rich smoothie bowl. Eating clean fuels your body and provides the essential vitamins and minerals for sustained energy and vitality.</p>
+  <img class="day-image" src="https://plus.unsplash.com/premium_photo-1694519942364-75a1aad30e37?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1pbi1zYW1lLXNlcmllc3wxfHx8ZW58MHx8fHx8" alt="Healthy smoothie bowl" />
+</section>
+
+<!-- Interactive Quiz after Day 2 -->
+<section class="interactive-container vibrant-1 quiz-container" id="quiz1">
+  <p class="quiz-question">What is a key benefit of starting your day with a smoothie bowl?</p>
+  <div class="quiz-options">
+    <button data-correct="true">Provides essential vitamins and minerals</button>
+    <button data-correct="false">Causes fatigue</button>
+    <button data-correct="false">Increases stress levels</button>
+  </div>
+  <p class="quiz-feedback" aria-live="polite"></p>
+</section>
+
+<!-- Day 3 -->
+<section class="day-section bg-pastel-3">
+  <h3 class="day-title"><strong>Day 3 - Gentle Movement 🧘‍♀️</strong></h3>
+  <p class="day-text">Flow through slow yoga or gentle stretching to release tension and increase flexibility. Moving your body with kindness encourages strength and relaxation.</p>
+  <img class="day-image" src="https://images.unsplash.com/photo-1651764254007-5263c6870f26?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTJ8fHBlcnNvbiUyMGRvaW5nJTIweW9nYSUyMGluJTIwY2FsbSUyMGVudmlyb25tZW50fGVufDB8fDB8fHww" alt="Gentle yoga practice" />
+</section>
+
+<!-- Day 4 -->
+<section class="day-section bg-pastel-4">
+  <h3 class="day-title"><strong>Day 4 - Infuse with Freshness 🍋</strong></h3>
+  <p class="day-text">Start your morning with lemon water to awaken your digestive system and refresh your body. This simple habit supports hydration and detoxification.</p>
+  <img class="day-image" src="https://plus.unsplash.com/premium_photo-1664551734407-3aa9416df803?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Z2xhc3MlMjBvZiUyMGxlbW9uJTIwd2F0ZXJ8ZW58MHx8MHx8fDA%3D" alt="Glass of lemon water" />
+</section>
+
+<!-- Interactive Poll after Day 4 -->
+<section class="interactive-container vibrant-2 poll-container" id="poll1">
+  <p class="poll-question">How often do you drink lemon water in your daily routine?</p>
+  <form>
+    <div class="poll-options">
+      <label><input type="radio" name="poll1" value="daily" /> Daily</label>
+      <label><input type="radio" name="poll1" value="sometimes" /> Sometimes</label>
+      <label><input type="radio" name="poll1" value="rarely" /> Rarely</label>
+      <label><input type="radio" name="poll1" value="never" /> Never</label>
+    </div>
+    <button type="button" class="poll-submit">Submit</button>
+  </form>
+  <div class="poll-result" aria-live="polite"></div>
+</section>
+
+<!-- Day 5 -->
+<section class="day-section bg-pastel-5">
+  <h3 class="day-title"><strong>Day 5 - Deep Rest 😴</strong></h3>
+  <p class="day-text">Prioritize quality rest today. Embrace stillness and allow your body and mind to recharge deeply, supporting healing and renewal.</p>
+  <img class="day-image" src="https://images.unsplash.com/photo-1686827985962-6303655a2e92?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGVyc29uJTIgc2xlZXBpbmclMjBwZWFjZWZ1bGx5fGVufDB8fDB8fHww" alt="Peaceful sleeping person" />
+</section>
+
+<!-- Day 6 -->
+<section class="day-section bg-pastel-6">
+  <h3 class="day-title"><strong>Day 6 - Nature Walk 🌳</strong></h3>
+  <p class="day-text">Take a slow, mindful walk through a green space. Let the sights, sounds, and smells of nature calm your senses and restore your energy.</p>
+  <img class="day-image" src="https://plus.unsplash.com/premium_photo-1727534977768-1974de1d0ec3?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGdyZWVuJTIwZm9yZXN0JTIwcGF0aHxlbnwwfHwwfHx8MA%3D%3D" alt="Forest path" />
+</section>
+
+<!-- Interactive Fact after Day 6 -->
+<section class="interactive-container vibrant-3 fact-container" id="fact1">
+  <p class="fact-text">Did you know? Spending time in nature can reduce stress hormones and boost your immune system.</p>
+</section>
+
+<!-- Day 7 -->
+<section class="day-section bg-pastel-7">
+  <h3 class="day-title"><strong>Day 7 - Raw & Real 🥗</strong></h3>
+  <p class="day-text">Fuel your body with raw fruits, vegetables, seeds, and nuts. Eating simple, whole foods supports digestion and overall wellness.</p>
+  <img class="day-image" src="https://plus.unsplash.com/premium_photo-1700053459853-93b2ed81a55b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGJvd2xzJTIwb2YlMjBudXRzJTIwYW5kJTIwZnJlc2glMjBmcnVpdHN8ZW58MHx8MHx8fDA%3D" alt="Bowls of nuts and fresh fruits" />
+</section>
+
+<!-- Day 8 -->
+<section class="day-section bg-pastel-8">
+  <h3 class="day-title"><strong>Day 8 - Mindful Breathing 📿</strong></h3>
+  <p class="day-text">Focus on breath awareness. Try a 5-minute guided breathwork session to cultivate calmness, clarity, and centeredness.</p>
+  <img class="day-image" src="https://plus.unsplash.com/premium_photo-1734360487866-8150d1da1e73?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2xvc2UlMjB1cCUyMG9mJTIwY2FsbSUyMGZhY2UlMjBkb2luZyUyMGJyZWF0aGluZyUyMGV4ZXJjaXNlfGVufDB8fDB8fHww" alt="Close-up meditation" />
+</section>
+
+<!-- Interactive Quiz after Day 8 -->
+<section class="interactive-container vibrant-4 quiz-container" id="quiz2">
+  <p class="quiz-question">Which breathing technique helps reduce anxiety most effectively?</p>
+  <div class="quiz-options">
+    <button data-correct="false">Shallow rapid breaths</button>
+    <button data-correct="true">Deep diaphragmatic breathing</button>
+    <button data-correct="false">Holding your breath</button>
+  </div>
+  <p class="quiz-feedback" aria-live="polite"></p>
+</section>
+
+<!-- Day 9 -->
+<section class="day-section bg-pastel-9">
+  <h3 class="day-title"><strong>Day 9 - Hydrate Well 💧</strong></h3>
+  <p class="day-text">Drink at least 8 glasses of water. Proper hydration supports brain function, energy, and detoxification throughout your body.</p>
+  <img class="day-image" src="https://plus.unsplash.com/premium_photo-1663099508574-598ae3175e5f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8d29tZW4lMjBkcmlua2luZyUyMHdhdGVyfGVufDB8fDB8fHww" alt="Glass of water" />
+</section>
+
+<!-- Day 10 -->
+<section class="day-section bg-pastel-10">
+  <h3 class="day-title"><strong>Day 10 - Digital Detox 📵</strong></h3>
+  <p class="day-text">Unplug from all screens for 2 hours today. Reconnect with yourself, nature, and those around you without digital distractions.</p>
+  <img class="day-image" src="https://plus.unsplash.com/premium_photo-1663091096498-503d4c79a6ea?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZGlnaXRhbCUyMGRldG94fGVufDB8fDB8fHww" alt="Person sitting outside unplugged" />
+</section>
+
+<!-- Interactive Poll after Day 10 -->
+<section class="interactive-container vibrant-5 poll-container" id="poll2">
+  <p class="poll-question">How often do you take breaks from screens daily?</p>
+  <form>
+    <div class="poll-options">
+      <label><input type="radio" name="poll2" value="often" /> Often</label>
+      <label><input type="radio" name="poll2" value="sometimes" /> Sometimes</label>
+      <label><input type="radio" name="poll2" value="rarely" /> Rarely</label>
+      <label><input type="radio" name="poll2" value="never" /> Never</label>
+    </div>
+    <button type="button" class="poll-submit">Submit</button>
+  </form>
+  <div class="poll-result" aria-live="polite"></div>
+</section>
+
+<!-- Day 11 -->
+<section class="day-section bg-pastel-11">
+  <h3 class="day-title"><strong>Day 11 - Gratitude Practice 🙏</strong></h3>
+  <p class="day-text">Write down three things you’re grateful for today. Cultivating gratitude shifts your mindset toward positivity and abundance.</p>
+  <img class="day-image" src="https://images.unsplash.com/photo-1719267686626-0d22de56b871?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGVyc29uJTIwd3JpdGluZyUyMGRvd24lMjBzb21ldGhpbmd8ZW58MHx8MHx8fDA%3D" alt="Writing gratitude journal" />
+</section>
+
+<!-- Day 12 -->
+<section class="day-section bg-pastel-12">
+  <h3 class="day-title"><strong>Day 12 - Balanced Meals 🍽️</strong></h3>
+  <p class="day-text">Focus on balanced meals with proteins, healthy fats, and carbs. This helps maintain steady energy and supports metabolic health.</p>
+  <img class="day-image" src="https://plus.unsplash.com/premium_photo-1664640733581-a9175477cd11?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmFsYW5jZWQlMjBtZWFsfGVufDB8fDB8fHww" alt="Balanced healthy meal" />
+</section>
+
+<!-- Interactive Fact after Day 12 -->
+<section class="interactive-container vibrant-1 fact-container" id="fact2">
+  <p class="fact-text">Fun fact: Eating a balanced diet can improve mood and cognitive function over time.</p>
+</section>
+
+<!-- Day 13 -->
+<section class="day-section bg-pastel-13">
+  <h3 class="day-title"><strong>Day 13 - Creative Expression 🎨</strong></h3>
+  <p class="day-text">Engage in a creative activity like drawing, journaling, or music. Expressing yourself creatively nurtures emotional wellbeing.</p>
+  <img class="day-image" src="https://plus.unsplash.com/premium_photo-1664015982534-5837663d1d73?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGRvaW5nJTIwbXVzaWMlMjBwZWFjZWZ1bGx5JTIwJTJDbWFuJTIwaGFuZHNvbWV8ZW58MHx8MHx8fDA%3D" alt="Creative journaling" />
+</section>
+
+<!-- Day 14 -->
+<section class="day-section bg-pastel-14">
+  <h3 class="day-title"><strong>Day 14 - Reflection & Reset 🔄</strong></h3>
+  <p class="day-text">Reflect on your 14-day journey. Celebrate your progress and set intentions for continued wellness and self-care moving forward.</p>
+  <img class="day-image" src="https://images.unsplash.com/photo-1624718393399-9d448945f176?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVzZXR8ZW58MHx8MHx8fDA%3D" alt="Reflective calm person" />
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section">
+  <h2>Contact Me</h2>
+  <p>Have questions or want to connect? Reach out anytime at <a href="mailto:sayantanniiii22@gmail.com">sayantanniiii22@gmail.com</a></p>
+</section>
+
+<script>
+  // Quiz #1 functionality
+  const quiz1 = document.getElementById('quiz1');
+  if(quiz1){
+    const options = quiz1.querySelectorAll('.quiz-options button');
+    const feedback = quiz1.querySelector('.quiz-feedback');
+    options.forEach(button => {
+      button.addEventListener('click', () => {
+        options.forEach(btn => btn.disabled = true);
+        if(button.dataset.correct === 'true'){
+          button.classList.add('correct');
+          feedback.textContent = 'Correct! Smoothie bowls are packed with vitamins and minerals.';
+        } else {
+          button.classList.add('wrong');
+          feedback.textContent = 'Oops! That’s not right. Try again or keep exploring.';
+        }
+      });
+    });
+  }
+
+  // Quiz #2 functionality
+  const quiz2 = document.getElementById('quiz2');
+  if(quiz2){
+    const options = quiz2.querySelectorAll('.quiz-options button');
+    const feedback = quiz2.querySelector('.quiz-feedback');
+    options.forEach(button => {
+      button.addEventListener('click', () => {
+        options.forEach(btn => btn.disabled = true);
+        if(button.dataset.correct === 'true'){
+          button.classList.add('correct');
+          feedback.textContent = 'Correct! Deep diaphragmatic breathing calms the nervous system.';
+        } else {
+          button.classList.add('wrong');
+          feedback.textContent = 'Not quite. Try again or keep practicing.';
+        }
+      });
+    });
+  }
+
+  // Poll #1 functionality
+  const poll1 = document.getElementById('poll1');
+  if(poll1){
+    const form = poll1.querySelector('form');
+    const submitBtn = poll1.querySelector('.poll-submit');
+    const resultDiv = poll1.querySelector('.poll-result');
+    submitBtn.addEventListener('click', () => {
+      const selected = form.querySelector('input[name="poll1"]:checked');
+      if(!selected){
+        alert('Please select an option to submit.');
+        return;
+      }
+      // Simple static response demo
+      resultDiv.textContent = `Thanks for sharing! You selected: "${selected.parentElement.textContent.trim()}"`;
+      submitBtn.disabled = true;
+      form.querySelectorAll('input').forEach(input => input.disabled = true);
+    });
+  }
+
+  // Poll #2 functionality
+  const poll2 = document.getElementById('poll2');
+  if(poll2){
+    const form = poll2.querySelector('form');
+    const submitBtn = poll2.querySelector('.poll-submit');
+    const resultDiv = poll2.querySelector('.poll-result');
+    submitBtn.addEventListener('click', () => {
+      const selected = form.querySelector('input[name="poll2"]:checked');
+      if(!selected){
+        alert('Please select an option to submit.');
+        return;
+      }
+      resultDiv.textContent = `Thanks for your response! You chose: "${selected.parentElement.textContent.trim()}"`;
+      submitBtn.disabled = true;
+      form.querySelectorAll('input').forEach(input => input.disabled = true);
+    });
+  }
+</script>
+
+</body>
+</html>
